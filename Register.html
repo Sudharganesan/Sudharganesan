@@ -2,25 +2,24 @@
 <head>
 <title>Register Form Design</title>
     <link rel="Stylesheet" type="text/css" href="Style.css">
-
+    <script type="text/javascript" src="Javascript.js"></script>
 <body>
 
     <div class="box">
             <h1>Register Here</h1>
 
-        <form name="myform2" action="register.php" method="POST">
-
+        <form name="myform2" action="register.php" method="POST" onsubmit="return vfun1">
             <p>Username</p>
-            <input type="text" name="uname1" placeholder="Enter Username" required="">
+            <input type="text" name="uname1" placeholder="Enter Username" >
 
             <p>Email</p>
-            <input type="Email" name="email" placeholder="Enter email id" required="">
+            <input type="Email" name="email" placeholder="Enter email id" >
 
             <p>Password</p>
-            <input type="password" name="upswd1" placeholder="Enter Password" required="">
+            <input type="password" name="upswd1" placeholder="Enter Password" >
 
             <p>Phoneno</p>
-            <input type="phoneno" name="phoneno" placeholder="phoneno" required="">
+            <input type="phoneno" name="phoneno" placeholder="phoneno" >
 
             <input type="submit" name="submit" value="Register">
 
