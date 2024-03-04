@@ -8,12 +8,6 @@ $dbusername = "root";
 $dbpassword = "";
 $dbname = "personal information";
 $conn = new mysqli ($host, $dbusername, $dbpassword, $dbname);
-
-if (mysqli_connect_error()){
-  die('Connect Error ('. mysqli_connect_errno() .') '
-    . mysqli_connect_error());
-}
-else{
   $SELECT = "SELECT uname From login Where uname = ? Limit ";
   $INSERT = "INSERT Into login(uname,upswd )values(?,?)";
   $stmt = $conn->prepare($SELECT);
