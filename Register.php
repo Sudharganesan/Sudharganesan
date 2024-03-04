@@ -11,11 +11,6 @@ $dbusername = "root";
 $dbpassword = "";
 $dbname = "personal information";
 $conn = new mysqli ($host, $dbusername, $dbpassword, $dbname);
-if (mysqli_connect_error()){
-  die('Connect Error ('. mysqli_connect_errno() .') '
-    . mysqli_connect_error());
-}
-else{
   $SELECT = "SELECT email From register Where email = ? Limit 1";
   $INSERT = "INSERT Into register (uname , email ,upswd, phoneno )values(?,?,?,?)";
   $stmt = $conn->prepare($SELECT);
