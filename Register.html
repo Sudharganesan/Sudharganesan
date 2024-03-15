@@ -3,6 +3,54 @@
 <title>Register Form Design</title>
     <link rel="Stylesheet" type="text/css" href="Style.css">
     <script type="text/javascript" src="Javascript.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+<script>
+		$(document).ready(function(){
+			$(".login").hide();
+			$(".register_li").addClass("active");
+
+			$(".login_li").click(function(){
+			  $(this).addClass("active");
+			  $(".register_li").removeClass("active");
+			  $(".login").show();
+			   $(".register").hide();
+			})
+
+			$(".register_li").click(function(){
+			  $(this).addClass("active");
+			  $(".login_li").removeClass("active");
+			  $(".register").show();
+			   $(".login").hide();
+			})
+		});
+</script>
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+<script type="text/javascript">
+  function submitData(){
+    $(document).ready(function(){
+      var data = {
+        username: $("#uname").val(),
+        email: $("#email").val(),
+        password: $("#upswd").val(),
+        phoneno: $("#phoneno").val(),
+        action: $("#action").val(),
+      };
+
+      $.ajax({
+        url: 'function.php',
+        type: 'post',
+        data: data,
+        success:function(response){
+          alert(response);
+          if(response == "Login Successful"){
+            window.location.reload();
+          }
+        }
+      });
+    });
+  }
+</script>
 <body>
 
     <div class="box">
@@ -10,13 +58,13 @@
 
         <form name="myform2" action="register.php" method="POST" onsubmit="return vfun1">
             <p>Username</p>
-            <input type="text" name="uname1" placeholder="Enter Username" >
+            <input type="text" name="uname" placeholder="Enter Username" >
 
             <p>Email</p>
             <input type="Email" name="email" placeholder="Enter email id" >
 
             <p>Password</p>
-            <input type="password" name="upswd1" placeholder="Enter Password" >
+            <input type="password" name="upswd" placeholder="Enter Password" >
 
             <p>Phoneno</p>
             <input type="phoneno" name="phoneno" placeholder="phoneno" >
