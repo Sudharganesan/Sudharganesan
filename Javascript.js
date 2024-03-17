@@ -47,6 +47,40 @@ app.post('/login', (req, res) => {
     res.status(401).json({ message: 'Invalid username or password' });
   }
 });
+$(document).ready(function() {
+  $('#loginForm').submit(function(e) {
+    e.preventDefault();
+    var username = $('#username').val();
+    var password = $('#password').val();
+    
+    $.ajax({
+      url: 'your_backend_login_endpoint',
+      method: 'POST',
+      dataType: 'json',
+      data: {
+        username: username,
+        password: password
+      },
+      success: function(response) {
+        if (response.status === 'success') {
+          showLoginInfo(response.message);
+        } else {
+          showError(response.message);
+        }
+      },
+      error: function(xhr, status, error) {
+        console.error('Error:', error);
+      }
+    });
+  });
+});
+function showLoginInfo(message) {
+  $('#loginStatus').html('<div class="alert alert-success" role="alert">' + message + '</div>');
+}
+
+function showError(message) {
+  $('#loginStatus').html('<div class="alert alert-danger" role="alert">' + message + '</div>');
+}      
 }
 function vfun1(){
             var uname=document.forms["myform2"]["uname"].value;
