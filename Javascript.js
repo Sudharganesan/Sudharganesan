@@ -48,19 +48,10 @@ app.post('/login', (req, res) => {
   }
 });
 $(document).ready(function() {
-  $('#loginForm').submit(function(e) {
+  $('#loginpage').submit(function(e) {
     e.preventDefault();
-    var username = $('#username').val();
-    var password = $('#password').val();
-    
-    $.ajax({
-      url: 'your_backend_login_endpoint',
-      method: 'POST',
-      dataType: 'json',
-      data: {
-        username: username,
-        password: password
-      },
+    var uname = $('#username').val();
+    var upswd = $('#upswd').val();
       success: function(response) {
         if (response.status === 'success') {
           showLoginInfo(response.message);
@@ -145,5 +136,30 @@ app.post('/login', (req, res) => {
   }
 });
 }                         
-
+$(document).ready(function() {
+  $('#loginpage').submit(function(e) {
+    e.preventDefault();
+    var uname = $('#username').val();
+    var email = $('#email').val();
+    var upswd = $('#upswd').val();
+    var phoneno = $('#phoneno').val();
+      success: function(response) {
+        if (response.status === 'success') {
+          showLoginInfo(response.message);
+        } else {
+          showError(response.message);
+        }
+      },
+      error: function(xhr, status, error) {
+        console.error('Error:', error);
+      }
+    });
+  });
+});
+function showLoginInfo(message) {
+  $('#registerStatus').html('<div class="alert alert-success" role="alert">' + message + '</div>');
+}
+function showError(message) {
+  $('#RegisterStatus').html('<div class="alert alert-danger" role="alert">' + message + '</div>');
+}      
 }
