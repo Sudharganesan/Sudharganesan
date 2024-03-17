@@ -15,8 +15,40 @@ function vfun(){
          alert("Login successfully");
                          }
 
-        }
-  function vfun1(){
+        
+const loginpage = document.querySelector('#login-page');
+
+loginpage.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const username = document.querySelector('#uname').value;
+  const password = document.querySelector('#upswd').value;
+
+  const response = await fetch('/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ uname, upswd })
+  });
+
+  const data = await response.json();
+
+  if (response.ok) {
+    console.log(data.message);
+  } else {
+    console.error(data.message);
+  }
+});
+app.post('/login', (req, res) => {
+  if (req.body.uname === 'example' && req.body.upswd === 'password') {
+    res.status(200).json({ message: 'Login successful' });
+  } else {
+    res.status(401).json({ message: 'Invalid username or password' });
+  }
+});
+}
+function vfun1(){
             var uname=document.forms["myform2"]["uname"].value;
             var email=document.forms["myform2"]["email"].value;
             var upswd=document.forms["myform2"]["upswd"].value;
@@ -46,27 +78,25 @@ function vfun(){
 
 
           alert("Register successfull");
-                         
+      
+const Registerpage = document.querySelector('#Register-page');
 
-          }
-const loginForm = document.querySelector('#login-form');
-
-loginForm.addEventListener('submit', async (e) => {
+Registerpage.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const username = document.querySelector('#uname').value;
-  const password = document.querySelector('#upswd').value;
-
+  const uname = document.querySelector('#uname').value;
+  const email = document.querySelector('#email').value;
+  const upswd = document.querySelector('#upswd').value; 
+  const phoneno = document.querySelector('#phoneno').value;
   const response = await fetch('/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ uname, upswd })
+    body: JSON.stringify({ uname,email,upswd,phoneno })
   });
 
   const data = await response.json();
-
   if (response.ok) {
     console.log(data.message);
   } else {
@@ -74,9 +104,12 @@ loginForm.addEventListener('submit', async (e) => {
   }
 });
 app.post('/login', (req, res) => {
-  if (req.body.uname === 'example' && req.body.upswd === 'password') {
+  if (req.body.uname === 'example' && req.body.email === 'asexample@gmail.com' && req.body.upswd === 'password' && req.body.phoneno === '9566890100') {
     res.status(200).json({ message: 'Login successful' });
   } else {
     res.status(401).json({ message: 'Invalid username or password' });
   }
 });
+}                         
+
+}
